@@ -14,7 +14,7 @@ export async function getProfile(app: FastifyInstance) {
     .get('/profile', {
       schema: {
         tags: ['auth'],
-        summary: 'get authenticated user profile',
+        summary: 'Get authenticated user profile',
         response: {
           200: z.object({
             user: z.object({
