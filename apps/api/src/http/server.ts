@@ -10,6 +10,7 @@ import {
   ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
+import { errorHandler } from './error-handler'
 import { authenticateWithPassword } from './routes/auth/authenticate-with-password'
 import { createAccount } from './routes/auth/create-account'
 import { getProfile } from './routes/auth/get-profile'
@@ -21,6 +22,7 @@ app.setValidatorCompiler(validatorCompiler)
 
 app.register(fastifyCors)
 
+// documentation
 app.register(fastifySwagger, {
   openapi: {
     openapi: '3.0.0',
@@ -38,10 +40,15 @@ app.register(fastifySwaggerUI, {
   routePrefix: '/docs',
 })
 
+// handler
+app.setErrorHandler(errorHandler)
+
+// ### routes ###
+
+// auth
 app.register(fastifyJwt, {
   secret: 'my-jwt-secret',
 })
-
 app.register(createAccount)
 app.register(authenticateWithPassword)
 app.register(getProfile)
