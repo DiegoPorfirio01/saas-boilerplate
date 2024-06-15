@@ -28,13 +28,20 @@ app.register(fastifyCors)
 // documentation
 app.register(fastifySwagger, {
   openapi: {
-    openapi: '3.0.0',
     info: {
       title: 'Next SaaS RBAC"',
       description: 'Full stack Next.js SaaS starter with RBAC',
       version: '0.1.0',
     },
-    servers: [],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
   },
   transform: jsonSchemaTransform,
 })
