@@ -92,15 +92,15 @@ model Member {
 }
 
 model Organization {
-  id                       String   @id @default(uuid())
-  name                     String
-  description              String?
-  slug                     String   @unique
-  domain                   String?  @unique
-  shouldAttchUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
-  avatarUrl                String?  @map("avatar_url")
-  createdAt                DateTime @default(now()) @map("created_at")
-  updatedAt                DateTime @updatedAt @map("updated_at")
+  id                        String   @id @default(uuid())
+  name                      String
+  description               String?
+  slug                      String   @unique
+  domain                    String?  @unique
+  shouldAttachUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
+  avatarUrl                 String?  @map("avatar_url")
+  createdAt                 DateTime @default(now()) @map("created_at")
+  updatedAt                 DateTime @updatedAt @map("updated_at")
 
   owner   User   @relation(fields: [ownerId], references: [id])
   ownerId String @map("owner_id")
