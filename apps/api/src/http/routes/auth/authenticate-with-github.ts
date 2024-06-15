@@ -1,5 +1,4 @@
-import { TokenType } from '@prisma/client'
-import { sign } from 'crypto'
+import { env } from '@saas/env'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
@@ -29,14 +28,14 @@ export async function authenticateWithGithub(app: FastifyInstance) {
         'https://github.com/login/oauth/access_token',
       )
 
-      githubOAuthUrl.searchParams.set('client_id', 'Ov23li9u64Ewrhs7nVDK')
+      githubOAuthUrl.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
       githubOAuthUrl.searchParams.set(
         'client_secret',
-        '19ba13f91cc9d7f839b995e6be36db4070b3b3a1',
+        env.GITHUB_OAUTH_CLIENT_SECRET,
       )
       githubOAuthUrl.searchParams.set(
         'redirect_uri',
-        'http://localhost:3000/api/auth/callback',
+        env.GITHUB_OAUTH_CLIENT_REDIRECT_URI,
       )
       githubOAuthUrl.searchParams.set('code', code)
 
