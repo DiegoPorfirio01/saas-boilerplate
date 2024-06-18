@@ -22,6 +22,7 @@ import { createOrganization } from './routes/orgs/create-organization'
 import { getMembership } from './routes/orgs/get-membership'
 import { getOrganization } from './routes/orgs/get-organization'
 import { getOrganizations } from './routes/orgs/get-organizations'
+import { updateOrganization } from './routes/orgs/update-organization'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -65,19 +66,19 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 app.register(createAccount)
+app.register(getProfile)
+app.register(getMembership)
+
 app.register(authenticateWithGithub)
 app.register(authenticateWithPassword)
 
 app.register(requestPasswordRecover)
 app.register(resetPassword)
 
-app.register(getProfile)
-
-app.register(createOrganization)
-app.register(getMembership)
-
-app.register(getOrganization)
 app.register(getOrganizations)
+app.register(getOrganization)
+app.register(createOrganization)
+app.register(updateOrganization)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('Server is running on port 3333')
