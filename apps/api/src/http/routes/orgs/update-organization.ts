@@ -1,4 +1,4 @@
-import { defineAbilityFor, organizationSchema, userSchema } from '@saas/auth'
+import { organizationSchema } from '@saas/auth'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
@@ -20,14 +20,14 @@ export async function updateOrganization(app: FastifyInstance) {
           tags: ['organizations'],
           summary: 'Update organization details',
           security: [{ bearerAuth: [] }],
-          params: z.object({
-            slug: z.string(),
-          }),
-          body: {
+          body: z.object({
             name: z.string(),
             domain: z.string().nullish(),
             shouldAttachUsersByDomain: z.boolean().optional(),
-          },
+          }),
+          params: z.object({
+            slug: z.string(),
+          }),
           response: {
             204: z.null(),
           },
