@@ -7,7 +7,7 @@ import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
-import { BadRequestError } from '../_errors/bad-request-error'
+import { UnauthorizedError } from '../_errors/unauthorized-error'
 
 export async function deleteOrganization(app: FastifyInstance) {
   app
@@ -40,7 +40,7 @@ export async function deleteOrganization(app: FastifyInstance) {
         const { cannot } = getUserPermissions(userId, membership.role)
 
         if (cannot('delete', authOrganization)) {
-          throw new BadRequestError(
+          throw new UnauthorizedError(
             `You're not allowed to update this organization.`,
           )
         }
