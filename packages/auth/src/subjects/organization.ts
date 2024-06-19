@@ -8,7 +8,7 @@ export const organizationSubject = z.tuple([
     z.literal('create'),
     z.literal('update'),
     z.literal('delete'),
-    z.literal('transferOwnership'),
+    z.literal('transfer_ownership'),
     z.literal('manage'),
   ]),
   z.union([z.literal('Organization'), organizationSchema]),

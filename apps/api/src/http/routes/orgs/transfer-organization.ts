@@ -43,7 +43,7 @@ export async function transferOwnerOrganization(app: FastifyInstance) {
 
         const { cannot } = getUserPermissions(userId, membership.role)
 
-        if (cannot('transferOwnership', authOrganization)) {
+        if (cannot('transfer_ownership', authOrganization)) {
           throw new UnauthorizedError(
             `You're not allowed to transfer this organization ownership.`,
           )
