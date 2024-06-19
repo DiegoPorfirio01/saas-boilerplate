@@ -41,7 +41,7 @@ export async function deleteOrganization(app: FastifyInstance) {
 
         if (cannot('delete', authOrganization)) {
           throw new UnauthorizedError(
-            `You're not allowed to update this organization.`,
+            `You're not allowed to delete this organization.`,
           )
         }
 
