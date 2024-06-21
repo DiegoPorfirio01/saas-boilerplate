@@ -116,7 +116,7 @@ model Project {
   id                       String   @id @default(uuid())
   name                     String
   slug                     String   @unique
-  description              String?
+  description              String
   domain                   String?  @unique
   shouldAttchUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
   avatarUrl                String?  @map("avatar_url")
