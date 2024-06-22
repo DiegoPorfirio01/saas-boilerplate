@@ -22,6 +22,7 @@ import { acceptInvite } from './routes/invites/accept-invite'
 import { createInvite } from './routes/invites/create-invite'
 import { getInvite } from './routes/invites/get-invite'
 import { getInvites } from './routes/invites/get-invites'
+import { rejectInvite } from './routes/invites/reject-invite'
 import { deleteMember } from './routes/members/delete-members'
 import { getMembers } from './routes/members/get-members'
 import { updateMember } from './routes/members/update-members'
@@ -110,6 +111,7 @@ app.register(createInvite)
 app.register(getInvite)
 app.register(getInvites)
 app.register(acceptInvite)
+app.register(rejectInvite)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('Server is running on port 3333')
