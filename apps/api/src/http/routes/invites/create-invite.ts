@@ -1,11 +1,9 @@
 import { roleSchema } from '@saas/auth'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z, { date } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
-import { generateSlug } from '@/utils/create-slug'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
 import { BadRequestError } from '../_errors/bad-request-error'
