@@ -1,8 +1,8 @@
-# Projeto Full Stack com Fastify, Prisma, Next.js 14 e Docker 🚀
+# Projeto Full Stack com Fastify, Prisma, Next.js 15 e Docker 🚀
 
 ## Descrição 📝
 
-Este projeto é uma aplicação full stack composta por uma API construída com Fastify e Prisma, e uma interface frontend usando Next.js 14. Além disso, utilizamos Docker para criar um ambiente de desenvolvimento consistente e isolado. A aplicação frontend faz uso de cache e componentes de servidor para otimização de desempenho e SEO.
+Este projeto é uma aplicação full stack composta por uma API construída com Fastify e Prisma, e uma interface frontend usando Next.js 15. Além disso, utilizamos Docker para criar um ambiente de desenvolvimento consistente e isolado. A aplicação frontend faz uso de cache e componentes de servidor para otimização de desempenho e SEO.
 
 ## Tecnologias Utilizadas 🛠️
 
@@ -17,7 +17,7 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
 
 ### Frontend 🔜
 
-- **Next.js 14**: Framework React para aplicações web modernas.
+- **Next.js 15**: Framework React para aplicações web modernas.
 - **React**: Biblioteca para construção de interfaces de usuário.
 - **Cache**: Implementação de cache para otimização de desempenho.
 - **Server Components**: Uso de componentes de servidor para renderização, melhor performance e otimização para SEO.
@@ -68,7 +68,7 @@ Utilizamos a biblioteca `@casl/ability` para gerenciar permissões baseadas em f
 
 ## Server Components e Otimização para SEO 🌐
 
-Utilizamos Server Components no Next.js 14 para renderização no servidor, o que melhora significativamente o desempenho e a experiência do usuário. Além disso, a renderização no servidor proporciona uma melhor otimização para motores de busca (SEO), garantindo que o conteúdo da aplicação seja facilmente indexado pelo Google e outros buscadores.
+Utilizamos Server Components no Next.js 15 para renderização no servidor, o que melhora significativamente o desempenho e a experiência do usuário. Além disso, a renderização no servidor proporciona uma melhor otimização para motores de busca (SEO), garantindo que o conteúdo da aplicação seja facilmente indexado pelo Google e outros buscadores.
 
 ## Contribuição 🤝
 
