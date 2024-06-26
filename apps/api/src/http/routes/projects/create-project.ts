@@ -7,7 +7,6 @@ import { prisma } from '@/lib/prisma'
 import { generateSlug } from '@/utils/create-slug'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
-import { BadRequestError } from '../_errors/bad-request-error'
 import { UnauthorizedError } from '../_errors/unauthorized-error'
 
 export async function createProject(app: FastifyInstance) {

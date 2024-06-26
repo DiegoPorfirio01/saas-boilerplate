@@ -114,7 +114,6 @@ app.register(getInvite)
 app.register(getInvites)
 app.register(acceptInvite)
 app.register(rejectInvite)
-app.register(rejectInvite)
 app.register(getPendingInvites)
 
 app.register(getOrganizationBilling)

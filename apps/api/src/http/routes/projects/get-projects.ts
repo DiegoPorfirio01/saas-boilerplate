@@ -13,7 +13,7 @@ export async function getProjects(app: FastifyInstance) {
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
     .get(
-      'organizations/:orgSlug/projects',
+      '/organizations/:orgSlug/projects',
       {
         schema: {
           tags: ['project'],
