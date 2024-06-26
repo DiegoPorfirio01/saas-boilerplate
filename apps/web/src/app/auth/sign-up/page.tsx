@@ -11,6 +11,11 @@ export default function SignInPage() {
   return (
     <form action="" className="space-y-4">
       <div className="space-y-1">
+        <Label htmlFor="name">Name</Label>
+        <Input name="name" type="name" id="name" />
+      </div>
+
+      <div className="space-y-1">
         <Label htmlFor="email">Email</Label>
         <Input name="email" type="email" id="email" />
       </div>
@@ -18,26 +23,22 @@ export default function SignInPage() {
       <div className="space-y-1">
         <Label htmlFor="password">Password</Label>
         <Input name="password" type="password" id="password" />
-
-        <Link
-          href={'/auth/forgot-password'}
-          className="text-xs font-medium text-foreground hover:underline"
-        >
-          Forget your password ?
-        </Link>
+      </div>
+      <div className="space-y-1">
+        <Label htmlFor="password">Confirm your password</Label>
+        <Input name="password" type="password" id="password" />
       </div>
 
-      <Button className="w-full">Sign in with e-mail</Button>
-
+      <Button className="w-full">Create account</Button>
       <Button className="w-full" size={'sm'} variant={'link'} asChild>
-        <Link href={'/auth/sign-up'}>Create new account</Link>
+        <Link href={'/auth/sign-in'}>Already registered ? Sign In</Link>
       </Button>
 
       <Separator />
 
       <Button className="w-full" variant={'outline'}>
         <Image src={githubIcon} className="mr-2 dark:invert" alt="" />
-        Sign in with GitHub
+        Sign up with GitHub
       </Button>
     </form>
   )
