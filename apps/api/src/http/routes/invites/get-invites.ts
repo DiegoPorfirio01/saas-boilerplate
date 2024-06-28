@@ -1,13 +1,12 @@
 import { roleSchema } from '@saas/auth'
-import { FastifyInstance } from 'fastify'
-import { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z from 'zod'
+import type { FastifyInstance } from 'fastify'
+import type { ZodTypeProvider } from 'fastify-type-provider-zod'
+import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
+import { UnauthorizedError } from '@/http/routes/_errors/unauthorized-error'
 import { prisma } from '@/lib/prisma'
 import { getUserPermissions } from '@/utils/get-user-permissions'
-
-import { UnauthorizedError } from '../_errors/unauthorized-error'
 
 export async function getInvites(app: FastifyInstance) {
   app
@@ -24,34 +23,30 @@ export async function getInvites(app: FastifyInstance) {
             slug: z.string(),
           }),
           response: {
-            200: z.array(
-              z.object({
-                invites: z.object({
-                  organization: z.object({
-                    name: z.string(),
-                  }),
+            200: z.object({
+              invites: z.array(
+                z.object({
+                  id: z.string().uuid(),
+                  role: roleSchema,
+                  email: z.string().email(),
+                  createdAt: z.date(),
                   author: z
                     .object({
                       id: z.string().uuid(),
                       name: z.string().nullable(),
-                      avatarUrl: z.string().url().nullable(),
                     })
                     .nullable(),
-                  email: z.string().email(),
-                  role: roleSchema,
                 }),
-              }),
-            ).nullable,
+              ),
+            }),
           },
         },
       },
       async (request) => {
         const { slug } = request.params
-
+        const userId = await request.getCurrentUserId()
         const { organization, membership } =
           await request.getUserMembership(slug)
-
-        const userId = await request.getCurrentUserId()
 
         const { cannot } = getUserPermissions(userId, membership.role)
 
@@ -74,14 +69,11 @@ export async function getInvites(app: FastifyInstance) {
               select: {
                 id: true,
                 name: true,
-                avatarUrl: true,
               },
             },
-            organization: {
-              select: {
-                name: true,
-              },
-            },
+          },
+          orderBy: {
+            createdAt: 'desc',
           },
         })
 
