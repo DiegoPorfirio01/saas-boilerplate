@@ -45,7 +45,7 @@ export async function OrganizationSwitcher() {
           <ChevronsUpDown className="size-4 text-muted-foreground" />
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-44" sideOffset={12}>
+        <DropdownMenuContent className="w-44" sideOffset={12} align="end">
           <DropdownMenuGroup>
             <DropdownMenuLabel>Organizations</DropdownMenuLabel>
             {organizations.map((userOrganization) => {
@@ -72,7 +72,10 @@ export async function OrganizationSwitcher() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem asChild>
-            <Link href={'/create-organization'} className="flex items-center">
+            <Link
+              href={'/create-organization'}
+              className="flex items-center py-1"
+            >
               <PlusCircle className="mx-1 size-5" />
               Create new
             </Link>
