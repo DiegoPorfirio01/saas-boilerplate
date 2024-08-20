@@ -71,6 +71,36 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
 
 Utilizamos a biblioteca `@casl/ability` para gerenciar permissões baseadas em funções (RBAC). As habilidades e permissões são definidas de acordo com as regras de negócios e aplicadas aos recursos da API para garantir acesso seguro e controlado.
 
+### Permissions table
+
+|                          | Administrator | Member | Billing | Anonymous |
+| ------------------------ | ------------- | ------ | ------- | --------- |
+| Update organization      | ✅            | ❌     | ❌      | ❌        |
+| Delete organization      | ✅            | ❌     | ❌      | ❌        |
+| Invite a member          | ✅            | ❌     | ❌      | ❌        |
+| Revoke an invite         | ✅            | ❌     | ❌      | ❌        |
+| List members             | ✅            | ✅     | ✅      | ❌        |
+| Transfer ownership       | ⚠️            | ❌     | ❌      | ❌        |
+| Update member role       | ✅            | ❌     | ❌      | ❌        |
+| Delete member            | ✅            | ⚠️     | ❌      | ❌        |
+| List projects            | ✅            | ✅     | ✅      | ❌        |
+| Create a new project     | ✅            | ✅     | ❌      | ❌        |
+| Update a project         | ✅            | ⚠️     | ❌      | ❌        |
+| Delete a project         | ✅            | ⚠️     | ❌      | ❌        |
+| Get billing details      | ✅            | ❌     | ✅      | ❌        |
+| Export billing details   | ✅            | ❌     | ✅      | ❌        |
+
+> ✅ = allowed
+> ❌ = not allowed
+> ⚠️ = allowed w/ conditions
+
+#### Conditions
+
+- Only owners may transfer organization ownership;
+- Only administrators and project authors may update/delete the project;
+- Members can leave their own organization;
+
+
 ## Server Components e Otimização para SEO 🌐
 
 Utilizamos Server Components no Next.js 15 para renderização no servidor, o que melhora significativamente o desempenho e a experiência do usuário. Além disso, a renderização no servidor proporciona uma melhor otimização para motores de busca (SEO), garantindo que o conteúdo da aplicação seja facilmente indexado pelo Google e outros buscadores.
