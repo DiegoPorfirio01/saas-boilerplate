@@ -18,7 +18,12 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
 ### Frontend 🔜
 
 - **Next.js 15**: Framework React para aplicações web modernas.
+    - Parallel Routes
+    - Intercepting Routes
+    - Server Actions
+    - ...
 - **React**: Biblioteca para construção de interfaces de usuário.
+- **React Query**: Requisições Assíncronas e Cache
 - **Cache**: Implementação de cache para otimização de desempenho.
 - **Server Components**: Uso de componentes de servidor para renderização, melhor performance e otimização para SEO.
 
