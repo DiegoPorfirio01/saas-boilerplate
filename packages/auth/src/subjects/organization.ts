@@ -4,12 +4,10 @@ import { organizationSchema } from '../models/organization'
 
 export const organizationSubject = z.tuple([
   z.union([
-    z.literal('get'),
-    z.literal('create'),
+    z.literal('manage'),
     z.literal('update'),
     z.literal('delete'),
     z.literal('transfer_ownership'),
-    z.literal('manage'),
   ]),
   z.union([z.literal('Organization'), organizationSchema]),
 ])

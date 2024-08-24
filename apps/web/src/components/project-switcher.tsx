@@ -24,9 +24,11 @@ export function ProjectSwitcher() {
     slug: string
   }>()
 
+  const projects =  getProjects(orgSlug);
+
   const { data, isLoading } = useQuery({
     queryKey: [orgSlug, 'projects'],
-    queryFn: () => getProjects(orgSlug),
+    queryFn: () => projects,
     enabled: !!orgSlug,
   })
 
