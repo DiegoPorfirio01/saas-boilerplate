@@ -8,6 +8,7 @@ import { generateSlug } from '@/utils/create-slug'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
 import { UnauthorizedError } from '../_errors/unauthorized-error'
+import { UniqueConstraintError } from '../_errors/uniqueConstraintError'
 
 export async function createProject(app: FastifyInstance) {
   app
@@ -50,6 +51,19 @@ export async function createProject(app: FastifyInstance) {
         }
 
         const { name, description } = request.body
+
+        const hasAnotherSomeSlug = await prisma.project.findUnique({
+          where: {
+            organizationId: organization.id,
+            slug: generateSlug(name),
+          },
+        })
+
+        if (hasAnotherSomeSlug) {
+          throw new UniqueConstraintError(
+            'A project with this slug already exists in the organization.',
+          )
+        }
 
         const project = await prisma.project.create({
           data: {

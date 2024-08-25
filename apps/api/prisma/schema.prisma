@@ -116,7 +116,7 @@ model Organization {
 model Project {
   id                       String   @id @default(uuid())
   name                     String
-  slug                     String   @unique
+  slug                     String
   description              String
   domain                   String?  @unique
   shouldAttchUsersByDomain Boolean  @default(false) @map("should_attach_users_by_domain")
@@ -129,6 +129,8 @@ model Project {
 
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   organizationId String       @map("organization_id")
+
+  @@unique([organizationId, slug])
 
   @@map("projects")
 }
