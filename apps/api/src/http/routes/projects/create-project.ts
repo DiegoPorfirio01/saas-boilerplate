@@ -52,7 +52,7 @@ export async function createProject(app: FastifyInstance) {
 
         const { name, description } = request.body
 
-        const hasAnotherSomeSlug = await prisma.project.findUnique({
+        const hasAnotherSomeSlug = await prisma.project.findFirst({
           where: {
             organizationId: organization.id,
             slug: generateSlug(name),

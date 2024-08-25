@@ -10,9 +10,9 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/useFormState'
 
-import { createOrganizationAction } from './actions'
+import { createOrganizationAction } from '../../create-organization/actions'
 
-export function CreateOrganizationForm() {
+export function OrganizationForm() {
   const router = useRouter()
   
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
@@ -43,7 +43,6 @@ export function CreateOrganizationForm() {
             </AlertDescription>
           </Alert>
         )
-          
         }
         
         <div className="space-y-1">

@@ -3,19 +3,14 @@ import { Button } from './ui/button'
 import { ability, getCurrentOrg } from '@/auth/auth'
 import { NavLink } from './nav-link'
 
-type Props = {}
-
-const Tabs = async (props: Props) => {
+const Tabs = async () => {
   const currentOrg = getCurrentOrg()
-
   const permissions = await ability()
 
   const cantUpdateOrganizations = permissions?.can('update', 'Organization')
   const canGetBilling = permissions?.can('get', 'Billing')
-
   const canGetMembers = permissions?.can('get', 'User')
   const canGetProject = permissions?.can('get', 'Project')
-
 
   return (
     <div className='border-b py-4'>

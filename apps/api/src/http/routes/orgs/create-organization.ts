@@ -6,7 +6,7 @@ import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 import { generateSlug } from '@/utils/create-slug'
 
-import { BadRequestError } from '../_errors/bad-request-error'
+import { UniqueConstraintError } from '../_errors/uniqueConstraintError'
 
 export async function createOrganization(app: FastifyInstance) {
   app
@@ -43,10 +43,23 @@ export async function createOrganization(app: FastifyInstance) {
           })
 
           if (organizationByDomain) {
-            throw new BadRequestError(
-              'Another organization with same domain already exists.',
+            throw new UniqueConstraintError(
+              'Another organization with same Domain already exists.',
             )
           }
+        }
+
+        const hasAnotherOrganizationWithSomeSlug =
+          await prisma.organization.findFirst({
+            where: {
+              slug: generateSlug(name),
+            },
+          })
+
+        if (hasAnotherOrganizationWithSomeSlug) {
+          throw new UniqueConstraintError(
+            'Another organization with same Slug already exists.',
+          )
         }
 
         const organization = await prisma.organization.create({

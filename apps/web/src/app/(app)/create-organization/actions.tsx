@@ -23,7 +23,9 @@ const organizationSchema = z
           return true
         },
         { message: 'The domain should follow the format: example.com' },
-      ),
+      )
+      .transform((data) => (data === '' ? null : data)),
+
     shouldAttachUserByDomain: z
       .union([z.literal('on'), z.literal('of'), z.boolean()])
       .transform((value) => value === true || value === 'on')
