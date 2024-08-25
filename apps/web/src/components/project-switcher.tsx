@@ -21,10 +21,9 @@ import {
 import { Skeleton } from './ui/skeleton'
 
 export function ProjectSwitcher() {
-  const { slug: orgSlug, slug: projectSlug } = useParams<{
-    slug: string
+  const { slug: orgSlug, project: projectSlug } = useParams<{
+    slug: string, project: string
   }>()
-
 
   const { data, isLoading } = useQuery({
     queryKey: [orgSlug, 'projects'],
