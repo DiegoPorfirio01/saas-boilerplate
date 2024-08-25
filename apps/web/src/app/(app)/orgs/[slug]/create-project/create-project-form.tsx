@@ -10,18 +10,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/useFormState'
 
-import { createOrganizationAction } from './actions'
+import { createProjectAction } from './actions'
+import { Textarea } from '@/components/ui/textarea'
 
-export function CreateOrganizationForm() {
-  const router = useRouter()
-  
+
+export function CreateProjectForm() {
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction,
-    () => {
-      router.push('/auth/sign-in')
-    },
+    createProjectAction,
+    () => {},
   )
 
+  console.log(success, message)
   return (
     <>
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -30,7 +29,7 @@ export function CreateOrganizationForm() {
             <AlertTriangle className="size-4" />
             <AlertTitle>Success</AlertTitle>
             <AlertDescription>
-              <p>Organization created !</p>
+              <p>Project created with success</p>
             </AlertDescription>
           </Alert>
         )}
@@ -42,12 +41,10 @@ export function CreateOrganizationForm() {
               <p>{message}</p>
             </AlertDescription>
           </Alert>
-        )
-          
-        }
-        
+        )}
+
         <div className="space-y-1">
-          <Label htmlFor="name">Organization name</Label>
+          <Label htmlFor="name">Name</Label>
           <Input name="name" id="name" />
 
           {errors?.name && (
@@ -58,44 +55,19 @@ export function CreateOrganizationForm() {
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="domain">E-mail domain</Label>
-          <Input
-            name="domain"
-            type="text"
-            id="domain"
-            inputMode="url"
-            placeholder="example.com"
-          />
+          <Label htmlFor="name">Description</Label>
+          <Textarea name="description" id="description" />
 
-          {errors?.domain && (
+          {errors?.description && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
-              {errors.domain[0]}
+              {errors.description[0]}
             </p>
           )}
         </div>
 
-        <div className="space-y-1">
-          <div className="flex items-start space-x-2">
-            <div className="translate-y-0.5">
-              <Checkbox
-                name="shouldAttachUsersByDomain"
-                id="shouldAttachUsersByDomain"
-              />
-            </div>
-            <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
-              <span className="text-sm font-medium leading-none">
-                Auto-join new members
-              </span>
-              <p className="text-sm text-muted-foreground">
-                This will automatically invite all members with same e-mail
-                domain to this organization.
-              </p>
-            </label>
-          </div>
-        </div>
-
+       
         <Button className="w-full" type="submit" disabled={isPending}>
-          Save organization
+          Save project
         </Button>
       </form>
     </>

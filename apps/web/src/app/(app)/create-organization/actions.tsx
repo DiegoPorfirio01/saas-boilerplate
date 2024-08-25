@@ -23,9 +23,7 @@ const organizationSchema = z
           return true
         },
         { message: 'The domain should follow the format: example.com' },
-      )
-      .transform((data) => (data === '' ? null : data)),
-
+      ),
     shouldAttachUserByDomain: z
       .union([z.literal('on'), z.literal('of'), z.boolean()])
       .transform((value) => value === true || value === 'on')
@@ -46,8 +44,6 @@ const organizationSchema = z
 
 export async function createOrganizationAction(data: FormData) {
   const result = organizationSchema.safeParse(Object.fromEntries(data))
-
-  console.log('result', result)
 
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors
