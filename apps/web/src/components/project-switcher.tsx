@@ -74,7 +74,7 @@ export function ProjectSwitcher() {
           {
             data?.projects.map((project) =>  
             <DropdownMenuItem key={project.id} asChild>
-              <Link href={`/orgs/${orgSlug}/${project.slug}`}>
+              <Link href={`/orgs/${orgSlug}/projects/${project.slug}`}>
                 <Avatar className="mr-1 size-5">
                   <AvatarImage src={project.avatarUrl ?? ''} />
                   <AvatarFallback />

@@ -20,7 +20,6 @@ export function CreateProjectForm() {
     () => {},
   )
 
-  console.log(success, message)
   return (
     <>
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -65,7 +64,6 @@ export function CreateProjectForm() {
           )}
         </div>
 
-       
         <Button className="w-full" type="submit" disabled={isPending}>
           Save project
         </Button>
