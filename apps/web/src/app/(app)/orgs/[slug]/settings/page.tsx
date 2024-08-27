@@ -24,8 +24,8 @@ export default async function Settings() {
             canUpdateOrganizations && (
               <Card>
                   <CardHeader>
-                    <CardTitle></CardTitle>
-                    <CardDescription></CardDescription>
+                    <CardTitle>Organization settings</CardTitle>
+                    <CardDescription>Update your organization details</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <OrganizationForm isUpdating initialData={{

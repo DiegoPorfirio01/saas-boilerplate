@@ -13,8 +13,6 @@ const Billing = async () => {
 
   return (
     <>
-        <Separator />
-
         <Card>
             <CardHeader>
             <CardTitle>Billing</CardTitle>
