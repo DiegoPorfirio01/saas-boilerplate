@@ -30,6 +30,7 @@ export async function getMembers(app: FastifyInstance) {
                   id: z.string().uuid(),
                   role: roleSchema,
                   userId: z.string().uuid(),
+                  email: z.string().email(),
                   name: z.string().nullable(),
                   avatarUrl: z.string().nullable(),
                 }),
@@ -38,7 +39,7 @@ export async function getMembers(app: FastifyInstance) {
           },
         },
       },
-      async (request) => {
+      async (request, reply) => {
         const { orgSlug } = request.params
 
         const userId = await request.getCurrentUserId()
@@ -54,38 +55,38 @@ export async function getMembers(app: FastifyInstance) {
           )
         }
 
-        const members = await prisma.member
-          .findMany({
-            select: {
-              id: true,
-              role: true,
-              user: {
-                select: {
-                  id: true,
-                  name: true,
-                  email: true,
-                  avatarUrl: true,
-                },
+        const members = await prisma.member.findMany({
+          select: {
+            id: true,
+            role: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+                email: true,
+                avatarUrl: true,
               },
             },
-            where: {
-              organizationId: organization.id,
-            },
-            orderBy: {
-              role: 'asc',
-            },
-          })
-          .then((members) =>
-            members.map(({ user: { id: userId, ...user }, ...members }) => {
-              return {
-                ...members,
-                ...user,
-                userId,
-              }
-            }),
-          )
+          },
+          where: {
+            organizationId: organization.id,
+          },
+          orderBy: {
+            role: 'asc',
+          },
+        })
 
-        return { members }
+        const membersWithRoles = members.map(
+          ({ user: { id: userId, ...user }, ...members }) => {
+            return {
+              ...members,
+              ...user,
+              userId,
+            }
+          },
+        )
+
+        return reply.send({ members: membersWithRoles })
       },
     )
 }
