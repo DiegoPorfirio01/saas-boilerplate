@@ -7,7 +7,7 @@ const Tabs = async () => {
   const currentOrg = getCurrentOrg()
   const permissions = await ability()
 
-  const cantUpdateOrganizations = permissions?.can('update', 'Organization')
+  const canUpdateOrganizations = permissions?.can('update', 'Organization')
   const canGetBilling = permissions?.can('get', 'Billing')
   const canGetMembers = permissions?.can('get', 'User')
   const canGetProject = permissions?.can('get', 'Project')
@@ -34,7 +34,7 @@ const Tabs = async () => {
                 )
             }
             {
-                cantUpdateOrganizations || canGetBilling && (
+                (canUpdateOrganizations || canGetBilling) && (
                     <Button asChild variant={'ghost'} size={'sm'} className='border border-transparent text-muted-foreground data-[current=true]:text-foreground data-[current=true]:border-border'>
                         <NavLink href={`/orgs/${currentOrg}/settings`}>
                             Settings & Billing
