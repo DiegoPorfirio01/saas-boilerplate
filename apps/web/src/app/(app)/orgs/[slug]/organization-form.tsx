@@ -9,16 +9,25 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/useFormState'
+import { createOrganizationAction, organizationSchema, updateOrganizationAction } from './actions'
 
-import { createOrganizationAction } from '../../create-organization/actions'
+interface OrganizationFormProps {
+  isUpdating?: boolean
+  initialData?: organizationSchema
+}
 
-export function OrganizationForm() {
+export function OrganizationForm({
+  isUpdating = false,
+  initialData
+}: OrganizationFormProps) {
+  const formAction = isUpdating ? updateOrganizationAction : createOrganizationAction
+
   const router = useRouter()
   
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction,
+    formAction,
     () => {
-      router.push('/auth/sign-in')
+      !isUpdating && router.push('/auth/sign-in')
     },
   )
 
@@ -30,7 +39,7 @@ export function OrganizationForm() {
             <AlertTriangle className="size-4" />
             <AlertTitle>Success</AlertTitle>
             <AlertDescription>
-              <p>Organization created !</p>
+              <p> {isUpdating ? 'Organization updated !' : 'Organization created !'}</p>
             </AlertDescription>
           </Alert>
         )}
@@ -47,7 +56,7 @@ export function OrganizationForm() {
         
         <div className="space-y-1">
           <Label htmlFor="name">Organization name</Label>
-          <Input name="name" id="name" />
+          <Input name="name" id="name" defaultValue={initialData?.name}/>
 
           {errors?.name && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -64,6 +73,7 @@ export function OrganizationForm() {
             id="domain"
             inputMode="url"
             placeholder="example.com"
+            defaultValue={initialData?.domain ?? undefined}
           />
 
           {errors?.domain && (
@@ -79,6 +89,7 @@ export function OrganizationForm() {
               <Checkbox
                 name="shouldAttachUsersByDomain"
                 id="shouldAttachUsersByDomain"
+                defaultChecked={initialData?.shouldAttachUsersByDomain}
               />
             </div>
             <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">

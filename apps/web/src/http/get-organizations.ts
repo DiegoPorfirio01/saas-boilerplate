@@ -1,6 +1,6 @@
 import { api } from './api-client'
 
-interface GetOrganization {
+interface GetOrganizations {
   organizations: {
     slug: string
     id: string
@@ -10,10 +10,14 @@ interface GetOrganization {
   }[]
 }
 
-export async function getOrganization() {
+export async function getOrganizations() {
   const { organizations } = await api
-    .get('organizations')
-    .json<GetOrganization>()
+    .get('organizations', {
+      next: {
+        tags: ['organizations'],
+      }
+    })
+    .json<GetOrganizations>()
 
   return { organizations }
 }

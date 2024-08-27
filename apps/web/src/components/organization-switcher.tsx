@@ -16,12 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { getOrganization } from '@/http/get-organizations'
+import { getOrganizations } from '@/http/get-organizations'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export async function OrganizationSwitcher() {
-  const { organizations } = await getOrganization()
+  const { organizations } = await getOrganizations()
 
   const currentOrg = organizations.find(
     (organization) => organization.slug === getCurrentOrg(),
