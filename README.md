@@ -70,6 +70,10 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
     - API: `http://localhost:3333`
     - Documentação da API: `http://localhost:3333/docs`
     - Frontend: `http://localhost:3000`
+  
+## Production Online 
+  - API DOCS: https://saas-boilerplate-7zlh.onrender.com/docs
+  - FRONTEND: https://saas-next15.vercel.app/
       
 
 ## Permissões RBAC com CASL 🔐
