@@ -29,7 +29,7 @@ const organizationSchema = z
         {
           message: 'Please, enter a valid domain.',
         },
-      ),
+      ).transform((data) => data === '' ? null : data),
     shouldAttachUsersByDomain: z
       .union([z.literal('on'), z.literal('off'), z.boolean()])
       .transform((value) =>  {
@@ -106,8 +106,6 @@ export async function updateOrganizationAction(data: FormData) {
 
   const { name, domain, shouldAttachUsersByDomain } = result.data
 
-  console.log(result.data)
-  
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
   try {
