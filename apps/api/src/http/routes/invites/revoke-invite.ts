@@ -13,7 +13,7 @@ export async function createInvite(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .post(
+    .delete(
       '/organizations/:slug/invites/:inviteId',
       {
         schema: {
@@ -52,6 +52,12 @@ export async function createInvite(app: FastifyInstance) {
         if (!invite) {
           throw new BadRequestError('invite not found')
         }
+
+        await prisma.invite.delete({
+          where: {
+            id: invite.id,
+          },
+        })
 
         return reply.status(204).send()
       },
