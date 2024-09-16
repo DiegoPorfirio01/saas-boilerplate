@@ -13,6 +13,8 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
 - **Prisma**: ORM e gerenciador de banco de dados.
 - **Swagger**: Ferramenta para documentação de APIs.
 - **CASL**: Biblioteca para controle de acesso baseado em permissões (RBAC).
+- **Prisma**: ORM.
+- **ZOD** : Validações.
 - **TypeScript**: Superset de JavaScript que adiciona tipagem estática.
 
 ### Frontend 🔜
@@ -21,6 +23,8 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
     - Parallel Routes
     - Intercepting Routes
     - Server Actions
+    - Zod
+    - Shadcn
     - ...
 - **React**: Biblioteca para construção de interfaces de usuário.
 - **React Query**: Requisições Assíncronas e Cache
@@ -57,11 +61,12 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
     ```
 
 4. **Execute o ambiente de desenvolvimento com Docker**:
-    ```bash
-    docker-compose up --build
+   (na raiz do projeto execute)
+   ```bash
+    docker-compose up -d
     ```
 
-5. **Acesse a aplicação**:
+6. **Acesse a aplicação**:
     - API: `http://localhost:3333`
     - Documentação da API: `http://localhost:3333/docs`
     - Frontend: `http://localhost:3000`
