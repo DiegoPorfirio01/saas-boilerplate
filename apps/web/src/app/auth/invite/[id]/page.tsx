@@ -48,7 +48,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
   async function acceptInviteAction() {
     'use server'
 
-    await acceptInvite(inviteId)
+    await acceptInvite({ inviteId })
 
     redirect('/')
   }
