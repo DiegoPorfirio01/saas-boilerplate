@@ -4,7 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "prisma": "cd apps/api && pnpm env:load prisma migrate dev"
   },
   "devDependencies": {
     "turbo": "latest"
