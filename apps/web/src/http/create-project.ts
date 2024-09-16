@@ -1,3 +1,4 @@
+import { revalidateTag } from 'next/cache'
 import { api } from './api-client'
 
 interface CreateProjectRequest {
@@ -19,4 +20,6 @@ export async function createProject({
       description
     },
   })
+
+  revalidateTag(`${orgSlug}/billing`)
 }

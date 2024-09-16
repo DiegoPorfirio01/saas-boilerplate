@@ -19,8 +19,13 @@ interface GetBillingResponse {
 
 export async function getBilling(orgSlug: string) {
   const result = await api
-    .get(`organizations/${orgSlug}/billing`)
-    .json<GetBillingResponse>()
+    .get(`organizations/${orgSlug}/billing`, {
+      next: {
+        tags: [`${orgSlug}/billing`],
+        revalidate: 60 * 60 * 24
+      }
+    })
+    .json<GetBillingResponse>();
 
-  return result
+  return result;
 }
