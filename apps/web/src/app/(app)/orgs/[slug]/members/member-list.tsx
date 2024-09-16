@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback } from '@radix-ui/react-avatar'
 import { organizationSchema } from '@saas/auth'
 import { ArrowLeftRight, Crown, CrownIcon } from 'lucide-react'
 import React from 'react'
-import { removeMember } from './action'
+import { removeMember } from './actions'
 import { UpdateMemberRoleSelect } from './update-role-member-select'
 
 export async function MemberList() {
