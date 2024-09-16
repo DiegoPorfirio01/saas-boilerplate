@@ -7,7 +7,7 @@ interface AcceptInviteRequest {
 type AcceptInviteResponse = void
 
 export async function acceptInvite({
-  inviteId
+  inviteId,
 }: AcceptInviteRequest): Promise<AcceptInviteResponse> {
   await api.post(`invites/${inviteId}/accept`)
 }

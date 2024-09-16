@@ -1,19 +1,17 @@
 'use client'
 
 import { AlertTriangle } from 'lucide-react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useFormState } from '@/hooks/useFormState'
-
-import { createProjectAction } from './actions'
 import { Textarea } from '@/components/ui/textarea'
+import { useFormState } from '@/hooks/useFormState'
 import { queryClient } from '@/lib/react-query'
 
+import { createProjectAction } from './actions'
 
 export function CreateProjectForm() {
   const { slug: org } = useParams<{ slug: string }>()
@@ -22,7 +20,7 @@ export function CreateProjectForm() {
     createProjectAction,
     () => {
       queryClient.invalidateQueries({
-        queryKey: [org, 'projects']
+        queryKey: [org, 'projects'],
       })
     },
   )

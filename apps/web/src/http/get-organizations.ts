@@ -15,7 +15,7 @@ export async function getOrganizations() {
     .get('organizations', {
       next: {
         tags: ['organizations'],
-      }
+      },
     })
     .json<GetOrganizations>()
 

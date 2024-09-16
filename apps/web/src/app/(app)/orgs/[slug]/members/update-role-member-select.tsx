@@ -1,15 +1,26 @@
 'use client'
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import type { Role } from "@saas/auth"
-import type { ComponentProps } from "react"
-import { updateRoleMemberAction } from "./actions"
+import type { Role } from '@saas/auth'
+import type { ComponentProps } from 'react'
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
+import { updateRoleMemberAction } from './actions'
 
 interface UpdateMemberRoleSelectProps extends ComponentProps<typeof Select> {
   memberId: string
 }
 
-export const UpdateMemberRoleSelect = ({memberId, ...props} : UpdateMemberRoleSelectProps) => {
+export const UpdateMemberRoleSelect = ({
+  memberId,
+  ...props
+}: UpdateMemberRoleSelectProps) => {
   async function updateRole(role: Role) {
     await updateRoleMemberAction(memberId, role)
   }
@@ -17,12 +28,12 @@ export const UpdateMemberRoleSelect = ({memberId, ...props} : UpdateMemberRoleSe
   return (
     <Select onValueChange={updateRole} {...props}>
       <SelectTrigger>
-       <SelectValue />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value='ADMIN'>Admin</SelectItem>
-        <SelectItem value='MEMBER'>Member</SelectItem>
-        <SelectItem value='BILLING'>Billing</SelectItem>
+        <SelectItem value="ADMIN">Admin</SelectItem>
+        <SelectItem value="MEMBER">Member</SelectItem>
+        <SelectItem value="BILLING">Billing</SelectItem>
       </SelectContent>
     </Select>
   )

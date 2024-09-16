@@ -12,8 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
 import { useFormState } from '@/hooks/useFormState'
+
 import { createInviteAction } from './actions'
 
 export function CreateInviteForm() {
@@ -41,7 +41,7 @@ export function CreateInviteForm() {
             placeholder="john@example.com"
           />
           {errors?.email && (
-            <p className="text-xs font-medium text-red-500 dark:text-red-400 mt-1">
+            <p className="mt-1 text-xs font-medium text-red-500 dark:text-red-400">
               {errors.email[0]}
             </p>
           )}

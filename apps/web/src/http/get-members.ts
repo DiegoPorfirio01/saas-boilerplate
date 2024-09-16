@@ -1,14 +1,15 @@
-import type { Role } from '@saas/auth';
+import type { Role } from '@saas/auth'
+
 import { api } from './api-client'
 
 interface GetMembersResponse {
   members: {
-    userId: string;
-    name: string | null;
-    avatarUrl: string | null;
-    email: string;
-    id: string;
-    role: Role;
+    userId: string
+    name: string | null
+    avatarUrl: string | null
+    email: string
+    id: string
+    role: Role
   }[]
 }
 
@@ -17,8 +18,8 @@ export async function getMembers(orgSlug: string) {
     .get(`organizations/${orgSlug}/members`, {
       next: {
         tags: [`${orgSlug}/members`],
-        revalidate: 60 * 60 * 24
-      }
+        revalidate: 60 * 60 * 24,
+      },
     })
     .json<GetMembersResponse>()
 

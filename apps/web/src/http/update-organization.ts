@@ -15,8 +15,8 @@ export async function updateOrganization({
   name,
   shouldAttachUsersByDomain,
 }: UpdateOrganizationRequest): Promise<UpdateOrganizationResponse> {
-  console.log('heeelooo',shouldAttachUsersByDomain)
-  
+  console.log('heeelooo', shouldAttachUsersByDomain)
+
   await api.put(`organizations/${org}`, {
     json: {
       domain,

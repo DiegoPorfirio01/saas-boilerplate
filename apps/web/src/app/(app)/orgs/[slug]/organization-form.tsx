@@ -9,7 +9,12 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/useFormState'
-import { createOrganizationAction, organizationSchema, updateOrganizationAction } from './actions'
+
+import {
+  createOrganizationAction,
+  organizationSchema,
+  updateOrganizationAction,
+} from './actions'
 
 interface OrganizationFormProps {
   isUpdating?: boolean
@@ -18,12 +23,14 @@ interface OrganizationFormProps {
 
 export function OrganizationForm({
   isUpdating = false,
-  initialData
+  initialData,
 }: OrganizationFormProps) {
-  const formAction = isUpdating ? updateOrganizationAction : createOrganizationAction
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction
 
   const router = useRouter()
-  
+
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     formAction,
     () => {
@@ -39,7 +46,12 @@ export function OrganizationForm({
             <AlertTriangle className="size-4" />
             <AlertTitle>Success</AlertTitle>
             <AlertDescription>
-              <p> {isUpdating ? 'Organization updated !' : 'Organization created !'}</p>
+              <p>
+                {' '}
+                {isUpdating
+                  ? 'Organization updated !'
+                  : 'Organization created !'}
+              </p>
             </AlertDescription>
           </Alert>
         )}
@@ -51,12 +63,11 @@ export function OrganizationForm({
               <p>{message}</p>
             </AlertDescription>
           </Alert>
-        )
-        }
-        
+        )}
+
         <div className="space-y-1">
           <Label htmlFor="name">Organization name</Label>
-          <Input name="name" id="name" defaultValue={initialData?.name}/>
+          <Input name="name" id="name" defaultValue={initialData?.name} />
 
           {errors?.name && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">

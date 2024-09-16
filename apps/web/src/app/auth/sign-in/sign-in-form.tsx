@@ -41,7 +41,12 @@ export function SignInForm() {
         )}
         <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
-          <Input name="email" type="email" id="email" defaultValue={searchParams.get('email') ?? ''}/>
+          <Input
+            name="email"
+            type="email"
+            id="email"
+            defaultValue={searchParams.get('email') ?? ''}
+          />
           {errors?.email && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
               {errors.email[0]}

@@ -1,4 +1,5 @@
 import { revalidateTag } from 'next/cache'
+
 import { api } from './api-client'
 
 interface CreateProjectRequest {
@@ -12,12 +13,12 @@ type CreateProjectResponse = void
 export async function createProject({
   name,
   description,
-  orgSlug
+  orgSlug,
 }: CreateProjectRequest): Promise<CreateProjectResponse> {
   await api.post(`organizations/${orgSlug}/projects`, {
     json: {
       name,
-      description
+      description,
     },
   })
 

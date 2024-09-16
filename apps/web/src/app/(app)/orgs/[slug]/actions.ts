@@ -1,12 +1,12 @@
 'use server'
 
 import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 
-import { createOrganization } from '@/http/create-organization'
 import { getCurrentOrg } from '@/auth/auth'
+import { createOrganization } from '@/http/create-organization'
 import { updateOrganization } from '@/http/update-organization'
-import { revalidateTag } from 'next/cache'
 
 const organizationSchema = z
   .object({
@@ -29,10 +29,11 @@ const organizationSchema = z
         {
           message: 'Please, enter a valid domain.',
         },
-      ).transform((data) => data === '' ? null : data),
+      )
+      .transform((data) => (data === '' ? null : data)),
     shouldAttachUsersByDomain: z
       .union([z.literal('on'), z.literal('off'), z.boolean()])
-      .transform((value) =>  {
+      .transform((value) => {
         return value === 'on'
       })
       .default(false),
@@ -55,7 +56,7 @@ export type organizationSchema = z.infer<typeof organizationSchema>
 
 export async function createOrganizationAction(data: FormData) {
   const result = organizationSchema.safeParse(Object.fromEntries(data))
-  
+
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors
 
@@ -63,7 +64,6 @@ export async function createOrganizationAction(data: FormData) {
   }
 
   const { name, domain, shouldAttachUsersByDomain } = result.data
-
 
   await new Promise((resolve) => setTimeout(resolve, 2000))
 

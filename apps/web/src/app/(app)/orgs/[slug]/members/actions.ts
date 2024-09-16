@@ -1,26 +1,27 @@
 'use server'
 
-import { getCurrentOrg } from "@/auth/auth"
-import { createInvite } from "@/http/create-invite"
-import { deleteMember } from "@/http/remove-member"
-import { revokeInvite } from "@/http/revoke-invite"
-import { updateMemberRole } from "@/http/update-member"
-import { roleSchema, type Role } from "@saas/auth"
-import { HTTPError } from "ky"
-import { revalidateTag } from "next/cache"
-import { z } from "zod"
+import { type Role, roleSchema } from '@saas/auth'
+import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
+import { z } from 'zod'
+
+import { getCurrentOrg } from '@/auth/auth'
+import { createInvite } from '@/http/create-invite'
+import { deleteMember } from '@/http/remove-member'
+import { revokeInvite } from '@/http/revoke-invite'
+import { updateMemberRole } from '@/http/update-member'
 
 const inviteSchema = z.object({
   email: z.string().email({ message: 'Invalid e-mail address.' }),
   role: roleSchema,
 })
 
-export async function removeMember(memberId: string ) {
+export async function removeMember(memberId: string) {
   const currentOrg = await getCurrentOrg()
 
   await deleteMember({
     orgSlug: currentOrg!,
-    userId: memberId
+    userId: memberId,
   })
 
   revalidateTag(`${currentOrg}/members`)
@@ -33,7 +34,7 @@ export async function updateRoleMemberAction(memberId: string, role: Role) {
   await updateMemberRole({
     orgSlug: currentOrg!,
     userId: memberId,
-    role
+    role,
   })
 
   revalidateTag(`${currentOrg}/members`)
@@ -44,7 +45,7 @@ export async function revokeInviteAction(inviteId: string) {
 
   await revokeInvite({
     orgSlug: currentOrg!,
-    inviteId
+    inviteId,
   })
 
   revalidateTag(`${currentOrg}/invites`)

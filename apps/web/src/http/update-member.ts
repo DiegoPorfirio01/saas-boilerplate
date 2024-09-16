@@ -1,4 +1,5 @@
 import type { Role } from '@saas/auth'
+
 import { api } from './api-client'
 
 interface UpdateMemberRequest {
@@ -12,11 +13,11 @@ type UpdateMemberResponse = void
 export async function updateMemberRole({
   orgSlug,
   userId,
-  role
+  role,
 }: UpdateMemberRequest): Promise<UpdateMemberResponse> {
   await api.put(`organizations/${orgSlug}/members/${userId}`, {
     json: {
-      role
-    }
+      role,
+    },
   })
 }
