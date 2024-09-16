@@ -41,6 +41,7 @@ import { deleteProject } from './routes/projects/delete-project'
 import { getProject } from './routes/projects/get-project'
 import { getProjects } from './routes/projects/get-projects'
 import { updateProject } from './routes/projects/update-project'
+import fastifyScalarUI from '@scalar/fastify-api-reference'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -70,7 +71,7 @@ app.register(fastifySwagger, {
   transform: jsonSchemaTransform,
 })
 
-app.register(fastifySwaggerUI, {
+app.register(fastifyScalarUI, {
   routePrefix: '/docs',
 })
 
