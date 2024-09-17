@@ -81,7 +81,6 @@ export function SignInForm() {
         <Button className="w-full" size={'sm'} variant={'link'} asChild>
           <Link href={'/auth/sign-up'}>Create new account</Link>
         </Button>
-        <Separator />
       </form>
       <form action={signInWithGithub}>
         <Button type="submit" className="w-full" variant={'outline'}>

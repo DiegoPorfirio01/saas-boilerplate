@@ -26,27 +26,28 @@ export async function authenticateWithGithub(app: FastifyInstance) {
     async (request, reply) => {
       const { code } = request.body
 
-      const githubOAuthURL = new URL(
+      const clientId = env.GITHUB_OAUTH_CLIENT_ID
+      const clientSecret = env.GITHUB_OAUTH_CLIENT_SECRET
+      const redirectUri = env.GITHUB_OAUTH_CLIENT_REDIRECT_URI
+
+      const requestBody = new URLSearchParams({
+        client_id: clientId,
+        client_secret: clientSecret,
+        code,
+        redirect_uri: redirectUri,
+      }).toString()
+
+      const githubAccessTokenResponse = await fetch(
         'https://github.com/login/oauth/access_token',
-      )
-
-      githubOAuthURL.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
-      githubOAuthURL.searchParams.set(
-        'client_secret',
-        env.GITHUB_OAUTH_CLIENT_SECRET,
-      )
-      githubOAuthURL.searchParams.set(
-        'redirect_uri',
-        env.GITHUB_OAUTH_CLIENT_REDIRECT_URI,
-      )
-      githubOAuthURL.searchParams.set('code', code)
-
-      const githubAccessTokenResponse = await fetch(githubOAuthURL, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: requestBody,
         },
-      })
+      )
 
       const githubAccessTokenData = await githubAccessTokenResponse.json()
 

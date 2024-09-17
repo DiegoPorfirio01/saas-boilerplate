@@ -10,7 +10,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
 import { useFormState } from '@/hooks/useFormState'
 
 import { signInWithGithub } from '../actions'
@@ -91,10 +90,7 @@ export function SignUpForm() {
         <Button className="w-full" size={'sm'} variant={'link'} asChild>
           <Link href={'/auth/sign-in'}>Already registered ? Sign In</Link>
         </Button>
-
-        <Separator />
       </form>
-
       <form action={signInWithGithub}>
         <Button type="submit" className="w-full" variant={'outline'}>
           <Image src={githubIcon} className="mr-2 dark:invert" alt="" />
