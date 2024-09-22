@@ -4,6 +4,8 @@
 
 Este projeto é uma aplicação full stack composta por uma API construída com Fastify e Prisma, e uma interface frontend usando Next.js 15. Além disso, utilizamos Docker para criar um ambiente de desenvolvimento consistente e isolado. A aplicação frontend faz uso de cache e componentes de servidor para otimização de desempenho e SEO.
 
+**Documentação OPEN API (SWAGGER)** [https://chat-0kc1.onrender.com/docs](https://chat-0kc1.onrender.com/docs)
+
 ## Tecnologias Utilizadas 🛠️
 
 ### Backend 🔙
@@ -70,11 +72,6 @@ Este projeto é uma aplicação full stack composta por uma API construída com 
     - API: `http://localhost:3333`
     - Documentação da API: `http://localhost:3333/docs`
     - Frontend: `http://localhost:3000`
-  
-## Production Online 
-  - API DOCS: https://saas-boilerplate-7zlh.onrender.com/docs
-  - FRONTEND: https://saas-next15.vercel.app/
-      
 
 ## Permissões RBAC com CASL 🔐
 
