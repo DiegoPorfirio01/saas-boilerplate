@@ -1,3 +1,5 @@
+'NOTA: Estou usando o serviço de beckend da Render, no modelo free, o que da um delay de 40 segundos até o beckend ativar, na sua primeira interação. Ou seja, para utilziar o serviço inicie a intereção com beckend e aguarde 40segundos para conseguir utilizar de fato o sistema ou a openAPI.'.
+
 # Projeto Full Stack com Fastify, Prisma, Next.js 15 e Docker 🚀
 
 ## Descrição 📝
