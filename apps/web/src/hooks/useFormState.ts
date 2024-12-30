@@ -1,7 +1,6 @@
 'use client'
 
 import { type FormEvent, useState, useTransition } from 'react'
-import { requestFormReset } from 'react-dom'
 
 interface FormState {
   success: boolean
